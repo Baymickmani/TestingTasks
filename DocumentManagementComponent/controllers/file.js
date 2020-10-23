@@ -22,6 +22,9 @@ exports.postFile = (req, res, next) => {
 
 exports.getFiles = (req, res, next) => {
     const tags = req.query.tags.split(",")
+    // This find the elements which have all the tags
+    // If to be retrieved with atleast one tag in the input 
+    // then replace $all with $in in the below statement
     File.find({tags: {$all: tags}})
         .then(result =>  {
             res.status(200).json({
